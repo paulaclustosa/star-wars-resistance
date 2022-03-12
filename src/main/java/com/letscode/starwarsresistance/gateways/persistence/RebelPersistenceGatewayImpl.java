@@ -1,9 +1,11 @@
 package com.letscode.starwarsresistance.gateways.persistence;
 
 import com.letscode.starwarsresistance.domains.entities.Rebel;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class RebelPersistenceGatewayImpl implements RebelPersistenceGateway {
 
   private static final Map<Long, Rebel> rebels = new HashMap<>();
