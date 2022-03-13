@@ -4,7 +4,7 @@ import com.letscode.starwarsresistance.domains.entities.Location;
 import com.letscode.starwarsresistance.domains.entities.Rebel;
 import com.letscode.starwarsresistance.exceptions.BusinessValidationException;
 import com.letscode.starwarsresistance.gateways.persistence.RebelPersistenceGateway;
-import com.letscode.starwarsresistance.usecases.validators.CreateRebelValidator;
+import com.letscode.starwarsresistance.usecases.validators.RebelValidator;
 import com.letscode.starwarsresistance.usecases.validators.LocationValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,8 @@ class UpdateRebelLocationTest {
     @InjectMocks
     UpdateRebelLocation updateRebelLocation;
     @Mock LocationValidator locationValidator;
-    @Mock CreateRebelValidator createRebelValidator;
+    @Mock
+    RebelValidator createRebelValidator;
     @Mock RebelPersistenceGateway rebelPersistenceGateway;
 
     @Test

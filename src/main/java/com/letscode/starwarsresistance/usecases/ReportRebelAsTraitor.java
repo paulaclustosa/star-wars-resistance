@@ -3,7 +3,7 @@ package com.letscode.starwarsresistance.usecases;
 import com.letscode.starwarsresistance.domains.entities.Rebel;
 import com.letscode.starwarsresistance.exceptions.BusinessValidationException;
 import com.letscode.starwarsresistance.gateways.persistence.RebelPersistenceGateway;
-import com.letscode.starwarsresistance.usecases.validators.CreateRebelValidator;
+import com.letscode.starwarsresistance.usecases.validators.RebelValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ReportRebelAsTraitor {
-    private final CreateRebelValidator createRebelValidator;
+    private final RebelValidator createRebelValidator;
     private final RebelPersistenceGateway rebelPersistenceGateway;
 
     public Rebel execute (Rebel rebel){
