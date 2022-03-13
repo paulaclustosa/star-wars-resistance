@@ -1,11 +1,15 @@
 package com.letscode.starwarsresistance.usecases.validators;
 
 import com.letscode.starwarsresistance.domains.entities.Location;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class LocationValidator {
     public List<String> validate(Location location) {
         List<String> errors = new ArrayList<>();
