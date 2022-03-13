@@ -1,9 +1,6 @@
 package com.letscode.starwarsresistance.usecases.validators;
 
 import com.letscode.starwarsresistance.domains.entities.Location;
-import com.letscode.starwarsresistance.domains.entities.Rebel;
-import com.letscode.starwarsresistance.domains.enums.Gender;
-import com.letscode.starwarsresistance.domains.enums.Item;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
