@@ -17,4 +17,14 @@ public class Inventory {
     items.put(Item.WATER, waterAmount);
     items.put(Item.FOOD, foodAmount);
   }
+
+  public int sumPoints() {
+    int sum = 0;
+
+    for (Item item : items.keySet()) {
+      sum = sum + items.get(item) * item.getPoints();
+    }
+
+    return sum;
+  }
 }

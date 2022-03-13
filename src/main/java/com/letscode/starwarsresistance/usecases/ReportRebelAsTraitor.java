@@ -1,7 +1,7 @@
 package com.letscode.starwarsresistance.usecases;
 
 import com.letscode.starwarsresistance.domains.entities.Rebel;
-import com.letscode.starwarsresistance.exceptions.BusinessValidatationException;
+import com.letscode.starwarsresistance.exceptions.BusinessValidationException;
 import com.letscode.starwarsresistance.gateways.persistence.RebelPersistenceGateway;
 import com.letscode.starwarsresistance.usecases.validators.CreateRebelValidator;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class ReportRebelAsTraitor {
 
     public Rebel execute (Rebel rebel){
         val rebelErrors = createRebelValidator.validate(rebel);
-        if (!rebelErrors.isEmpty()) throw new BusinessValidatationException(rebelErrors);
+        if (!rebelErrors.isEmpty()) throw new BusinessValidationException(rebelErrors);
 
         if (!rebel.isTraitor()){
             rebel.setTraitor(true);

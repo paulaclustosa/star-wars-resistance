@@ -1,7 +1,7 @@
 package com.letscode.starwarsresistance.usecases;
 
 import com.letscode.starwarsresistance.domains.entities.Rebel;
-import com.letscode.starwarsresistance.exceptions.BusinessValidatationException;
+import com.letscode.starwarsresistance.exceptions.BusinessValidationException;
 import com.letscode.starwarsresistance.gateways.persistence.RebelPersistenceGateway;
 import com.letscode.starwarsresistance.usecases.validators.CreateRebelValidator;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class CreateRebel {
   public Rebel execute(Rebel rebel) {
     val errors = createRebelValidator.validate(rebel);
 
-    if (!errors.isEmpty()) throw new BusinessValidatationException(errors);
+    if (!errors.isEmpty()) throw new BusinessValidationException(errors);
 
     return rebelPersistenceGateway.save(rebel);
   }

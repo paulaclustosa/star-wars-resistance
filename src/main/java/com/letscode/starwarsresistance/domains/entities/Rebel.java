@@ -1,6 +1,7 @@
 package com.letscode.starwarsresistance.domains.entities;
 
 import com.letscode.starwarsresistance.domains.enums.Gender;
+import com.letscode.starwarsresistance.domains.enums.Item;
 import lombok.Builder;
 import lombok.Data;
 
@@ -23,4 +24,11 @@ public class Rebel {
     this.location = location;
     this.inventory = inventory;
   }
+
+//  public boolean hasItems(Inventory rejectedItems) {
+//    for (Item item : items.keySet()) {
+//
+//    }
+//    else true;
+//  }
 }
