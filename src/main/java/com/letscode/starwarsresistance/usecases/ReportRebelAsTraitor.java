@@ -16,12 +16,14 @@ public class ReportRebelAsTraitor {
 
     public Rebel execute (Rebel rebel){
         val rebelErrors = createRebelValidator.validate(rebel);
-        if (!rebelErrors.isEmpty()) throw new BusinessValidationException(rebelErrors);
 
-        if (!rebel.isTraitor()){
+        if (!rebelErrors.isEmpty()) throw new BusinessValidationException(rebelErrors);
+        rebel.setNumberOfReportsAsTraitor(rebel.getNumberOfReportsAsTraitor()+1);
+
+        if (!rebel.isTraitor() && rebel.getNumberOfReportsAsTraitor() >= 3){
             rebel.setTraitor(true);
         }
-        rebel.setNumberOfReportsAsTraitor(rebel.getNumberOfReportsAsTraitor()+1);
+
         return rebelPersistenceGateway.save(rebel);
     }
 }
