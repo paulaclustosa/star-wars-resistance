@@ -2,7 +2,7 @@ package com.letscode.starwarsresistance.usecases;
 
 import com.letscode.starwarsresistance.domains.entities.Location;
 import com.letscode.starwarsresistance.domains.entities.Rebel;
-import com.letscode.starwarsresistance.exceptions.BusinessValidatationException;
+import com.letscode.starwarsresistance.exceptions.BusinessValidationException;
 import com.letscode.starwarsresistance.gateways.persistence.RebelPersistenceGateway;
 import com.letscode.starwarsresistance.usecases.validators.CreateRebelValidator;
 import com.letscode.starwarsresistance.usecases.validators.LocationValidator;
@@ -52,7 +52,7 @@ class UpdateRebelLocationTest {
         Mockito.when(locationValidator.validate(location)).thenReturn(List.of());
         Mockito.when(createRebelValidator.validate(rebel)).thenReturn(List.of("rebel validation error"));
 
-        Assertions.assertThrows(BusinessValidatationException.class, () -> updateRebelLocation.execute(rebel, location));
+        Assertions.assertThrows(BusinessValidationException.class, () -> updateRebelLocation.execute(rebel, location));
     }
 
     @Test
@@ -65,6 +65,6 @@ class UpdateRebelLocationTest {
 
         Mockito.when(locationValidator.validate(location)).thenReturn(List.of("location validation error"));
 
-        Assertions.assertThrows(BusinessValidatationException.class, () -> updateRebelLocation.execute(rebel, location));
+        Assertions.assertThrows(BusinessValidationException.class, () -> updateRebelLocation.execute(rebel, location));
     }
 }

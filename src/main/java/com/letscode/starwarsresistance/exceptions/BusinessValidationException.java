@@ -4,12 +4,12 @@ import lombok.Getter;
 
 import java.util.List;
 
-public class BusinessValidatationException extends RuntimeException {
+public class BusinessValidationException extends RuntimeException {
 
   @Getter
   private final List<String> validationErrors;
 
-  public BusinessValidatationException(List<String> errors) {
+  public BusinessValidationException(List<String> errors) {
     super(String.join(";", errors));
     this.validationErrors = errors;
   }
