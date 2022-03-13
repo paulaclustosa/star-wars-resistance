@@ -36,17 +36,20 @@ class ReportRebelAsTraitorTest {
 
         Mockito.when(rebelValidator.validate(rebel)).thenReturn(List.of());
 
+        rebel.setNumberOfReportsAsTraitor(0);
+
         reportRebelAsTraitor.execute(rebel);
 
+        Assertions.assertFalse(rebel.isTraitor());
         Assertions.assertEquals(reportsBefore + 1, rebel.getNumberOfReportsAsTraitor());
 
-        if (rebel.getNumberOfReportsAsTraitor() >= 3){
-            Assertions.assertEquals(true, rebel.isTraitor());
-        }else{
-            Assertions.assertEquals(false, rebel.isTraitor());
-        }
+        rebel.setNumberOfReportsAsTraitor(2);
 
-        Mockito.verify(rebelPersistenceGateway).save(rebel);
+        reportRebelAsTraitor.execute(rebel);
+
+        Assertions.assertTrue(rebel.isTraitor());
+
+        Mockito.verify(rebelPersistenceGateway, Mockito.times(2)).save(rebel);
     }
 
 }

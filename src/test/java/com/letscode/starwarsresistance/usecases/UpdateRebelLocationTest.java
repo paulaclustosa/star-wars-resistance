@@ -35,7 +35,7 @@ class UpdateRebelLocationTest {
         Mockito.when(rebelValidator.validate(rebel)).thenReturn(List.of());
 
         updateRebelLocation.execute(rebel, location);
-        Assertions.assertEquals(rebel.getLocation(), location);
+        Assertions.assertEquals(location, rebel.getLocation());
 
         Mockito.verify(rebelPersistenceGateway).save(rebel);
     }
