@@ -15,8 +15,6 @@ import org.mockito.junit.jupiter.MockitoSettings;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @MockitoSettings
 class UpdateRebelLocationTest {
 
