@@ -18,12 +18,10 @@ import java.util.List;
 @MockitoSettings
 class UpdateRebelLocationTest {
 
-    @InjectMocks
-    UpdateRebelLocation updateRebelLocation;
     @Mock LocationValidator locationValidator;
-    @Mock
-    RebelValidator createRebelValidator;
+    @Mock RebelValidator rebelValidator;
     @Mock RebelPersistenceGateway rebelPersistenceGateway;
+    @InjectMocks UpdateRebelLocation updateRebelLocation;
 
     @Test
     void shouldUpdateWhenValidationSucceeds() {
@@ -34,10 +32,10 @@ class UpdateRebelLocationTest {
         Assertions.assertNotEquals(rebel.getLocation(), location);
 
         Mockito.when(locationValidator.validate(location)).thenReturn(List.of());
-        Mockito.when(createRebelValidator.validate(rebel)).thenReturn(List.of());
+        Mockito.when(rebelValidator.validate(rebel)).thenReturn(List.of());
 
         updateRebelLocation.execute(rebel, location);
-        Assertions.assertEquals(rebel.getLocation(), location);
+        Assertions.assertEquals(location, rebel.getLocation());
 
         Mockito.verify(rebelPersistenceGateway).save(rebel);
     }
@@ -51,7 +49,7 @@ class UpdateRebelLocationTest {
         Assertions.assertNotEquals(rebel.getLocation(), location);
 
         Mockito.when(locationValidator.validate(location)).thenReturn(List.of());
-        Mockito.when(createRebelValidator.validate(rebel)).thenReturn(List.of("rebel validation error"));
+        Mockito.when(rebelValidator.validate(rebel)).thenReturn(List.of("rebel validation error"));
 
         Assertions.assertThrows(BusinessValidationException.class, () -> updateRebelLocation.execute(rebel, location));
     }
