@@ -18,7 +18,8 @@ public class RebelPersistenceH2GatewayImpl implements RebelPersistenceGateway {
 
   @Override
   public Rebel save(Rebel rebel) {
-    RebelEntity rebelEntity = rebelH2Repository.save(new RebelEntity(rebel));
+    RebelEntity rebelEntity = new RebelEntity(rebel);
+    rebelH2Repository.save(rebelEntity);
     return rebelEntity.toRebel();
   }
 

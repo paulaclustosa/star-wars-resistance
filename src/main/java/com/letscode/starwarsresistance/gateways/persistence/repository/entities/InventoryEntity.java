@@ -9,6 +9,7 @@ import javax.persistence.Embeddable;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Embeddable
 public class InventoryEntity {
 

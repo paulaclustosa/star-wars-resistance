@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Embeddable
 public class LocationEntity {
 

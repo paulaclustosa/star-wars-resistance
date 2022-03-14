@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-@Data
-@Builder
 @AllArgsConstructor
+@Builder
+@Data
 public class Location {
   private double latitude;
   private double longitude;
