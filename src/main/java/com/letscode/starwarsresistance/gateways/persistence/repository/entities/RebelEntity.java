@@ -26,7 +26,7 @@ public class RebelEntity {
   private int age;
 
   @Column ( name = "GENDER" )
-  private Gender gender;
+  private String gender;
 
   @Embedded
   private LocationEntity location;
@@ -41,12 +41,36 @@ public class RebelEntity {
   private int numberOfReportsAsTraitor = 0;
 
   public RebelEntity(Rebel rebel) {
-    BeanUtils.copyProperties(rebel, this);
+    this.name = rebel.getName();
+    this.age = rebel.getAge();
+    this.gender = rebel.getGender().getGenderRef();
+    this.location = new LocationEntity(rebel.getLocation().getLatitude(),
+        rebel.getLocation().getLongitude(),
+        rebel.getLocation().getGalaxyName());
+    this.inventory = new InventoryEntity(rebel.getInventory().getWeaponAmount(),
+        rebel.getInventory().getAmmunitionAmount(),
+        rebel.getInventory().getWaterAmount(),
+        rebel.getInventory().getFoodAmount());
   }
 
   public Rebel toRebel() {
-    Rebel rebel = new Rebel();
-    BeanUtils.copyProperties(this, rebel);
+    Rebel rebel = Rebel.builder()
+        .name(name)
+        .age(age)
+        .gender(Gender.fromGenderRef(gender))
+        .location(new Location(location.getLatitude(),
+            location.getLongitude(),
+            location.getGalaxyName()))
+        .inventory(new Inventory(inventory.getWeaponAmount(),
+            inventory.getAmmunitionAmount(),
+            inventory.getWaterAmount(),
+            inventory.getFoodAmount()))
+        .build();
+
+    rebel.setId(id);
+    rebel.setTraitor(isTraitor);
+    rebel.setNumberOfReportsAsTraitor(numberOfReportsAsTraitor);
+
     return rebel;
   }
 

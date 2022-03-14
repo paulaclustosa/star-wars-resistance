@@ -11,20 +11,14 @@ import java.util.Objects;
 @Component
 public class RebelMapper {
 
-  public Rebel toRebel (RebelRequest rebelRequest) {
+  public Rebel toRebel(RebelRequest rebelRequest) {
     return Rebel.builder()
         .name(rebelRequest.getName())
         .age(rebelRequest.getAge())
-        .gender(rebelGenderEntryValidation(rebelRequest))
+        .gender(Gender.fromGenderRef(rebelRequest.getGender()))
         .location(new Location(rebelRequest.getLatitude(), rebelRequest.getLongitude(), rebelRequest.getGalaxyName()))
         .inventory(new Inventory(rebelRequest.getWeaponAmount(), rebelRequest.getAmmunitionAmount(), rebelRequest.getWaterAmount(), rebelRequest.getFoodAmount()))
         .build();
-  }
-
-  public static Gender rebelGenderEntryValidation(RebelRequest rebelRequest) {
-    if (Objects.equals(rebelRequest.getGender(), "F")) return Gender.FEMALE;
-    if (Objects.equals(rebelRequest.getGender(), "M")) return Gender.MALE;
-    else return null;
   }
 
 }
