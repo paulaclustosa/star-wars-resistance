@@ -33,11 +33,12 @@ public class Rebel {
 
   public boolean hasItems(Inventory rejectedItems) {
     List<String> errors = new ArrayList<>();
-    for (Item item : rejectedItems.getItems().keySet()) {
-      if (this.getInventory().getItems().get(item) < rejectedItems.getItems().get(item)){
-        errors.add(this.name + " doesn't have enough " + item + " for this transaction");
-      }
-    }
+
+    if (this.getInventory().getAmmunitionAmount() < rejectedItems.getAmmunitionAmount()) errors.add(this.name + " doesn't have enough ammunition for this transaction");
+    if (this.getInventory().getWeaponAmount() < rejectedItems.getWeaponAmount()) errors.add(this.name + " doesn't have enough weapons for this transaction");
+    if (this.getInventory().getFoodAmount() < rejectedItems.getFoodAmount()) errors.add(this.name + " doesn't have enough food for this transaction");
+    if (this.getInventory().getWaterAmount() < rejectedItems.getWaterAmount()) errors.add(this.name + " doesn't have enough water for this transaction");
+
     if (!errors.isEmpty()) throw new BusinessValidationException(errors);
     return true;
   }
