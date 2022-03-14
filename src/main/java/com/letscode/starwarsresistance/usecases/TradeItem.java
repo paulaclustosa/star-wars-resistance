@@ -17,21 +17,21 @@ public class TradeItem {
     private final RebelValidator createRebelValidator;
     private final RebelPersistenceGateway rebelPersistenceGateway;
 
-    public Rebel execute(Rebel rebel, Inventory itemsRequired, Inventory itemsRejected){
-        //verify rebel
+/*    public Rebel execute(Rebel rebel, Inventory itemsRequired, Inventory itemsRejected){
+        verify rebel
         val rebelErrors = createRebelValidator.validate(rebel);
         if (!rebelErrors.isEmpty()) throw new BusinessValidationException(rebelErrors);
 
-        //verify inventory
-        //verify if rebel has itemsRejected
-        //if (!rebel.hasItems()) throw new BusinessValidatationException(List.of("Rebel doesn't own all items to reject"));
+        verify inventory
+        verify if rebel has itemsRejected
+        if (!rebel.hasItems()) throw new BusinessValidatationException(List.of("Rebel doesn't own all items to reject"));
 
-        //verify points
+        verify points
         if (itemsRequired.sumPoints() == itemsRejected.sumPoints()) {
             rebel.setInventory(itemsRequired);
         }else {
             throw new BusinessValidationException(List.of("Items cannot be traded because their values are not equal"));
         }
         return rebelPersistenceGateway.save(rebel);
-    }
+    }*/
 }

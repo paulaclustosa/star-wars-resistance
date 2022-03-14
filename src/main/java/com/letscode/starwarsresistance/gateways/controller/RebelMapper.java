@@ -17,8 +17,7 @@ public class RebelMapper {
         .age(rebelRequest.getAge())
         .gender(rebelGenderEntryValidation(rebelRequest))
         .location(new Location(rebelRequest.getLatitude(), rebelRequest.getLongitude(), rebelRequest.getGalaxyName()))
-        .inventory(new Inventory(rebelRequest.getWeaponAmount(), rebelRequest.getAmmunitionAmount(),
-            rebelRequest.getWaterAmount(), rebelRequest.getFoodAmount()))
+        .inventory(new Inventory(rebelRequest.getWeaponAmount(), rebelRequest.getAmmunitionAmount(), rebelRequest.getWaterAmount(), rebelRequest.getFoodAmount()))
         .build();
   }
 

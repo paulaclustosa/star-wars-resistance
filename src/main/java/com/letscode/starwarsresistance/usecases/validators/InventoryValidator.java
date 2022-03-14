@@ -17,13 +17,13 @@ public class InventoryValidator {
   public static List<String> validate(Inventory inventory) {
     List<String> errors = new ArrayList<>();
 
-    if (!StringUtils.hasText(Integer.toString(inventory.getItems().get(Item.WEAPON)))) errors.add(INVENTORY_MANDATORY_MSG +
+    if (!StringUtils.hasText(Integer.toString(inventory.getWeaponAmount()))) errors.add(INVENTORY_MANDATORY_MSG +
         "You have to declare it's weapon amount - even if equals 0 (zero).");
-    if (!StringUtils.hasText(Integer.toString(inventory.getItems().get(Item.AMMUNITION)))) errors.add(INVENTORY_MANDATORY_MSG +
+    if (!StringUtils.hasText(Integer.toString(inventory.getAmmunitionAmount()))) errors.add(INVENTORY_MANDATORY_MSG +
         "You have to declare it's ammunition amount - even if equals 0 (zero).");
-    if (!StringUtils.hasText(Integer.toString(inventory.getItems().get(Item.WATER)))) errors.add(INVENTORY_MANDATORY_MSG +
+    if (!StringUtils.hasText(Integer.toString(inventory.getWaterAmount()))) errors.add(INVENTORY_MANDATORY_MSG +
         "You have to declare it's water amount - even if equals 0 (zero).");
-    if (!StringUtils.hasText(Integer.toString(inventory.getItems().get(Item.FOOD)))) errors.add(INVENTORY_MANDATORY_MSG +
+    if (!StringUtils.hasText(Integer.toString(inventory.getFoodAmount()))) errors.add(INVENTORY_MANDATORY_MSG +
         "You have to declare it's food amount - even if equals 0 (zero).");
 
     return errors;
