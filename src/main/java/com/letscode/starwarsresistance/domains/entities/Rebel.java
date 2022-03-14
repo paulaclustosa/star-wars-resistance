@@ -4,13 +4,15 @@ import com.letscode.starwarsresistance.domains.enums.Gender;
 import com.letscode.starwarsresistance.domains.enums.Item;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Rebel {
   private Long id;
-  private final String name;
-  private final int age;
-  private final Gender gender;
+  private String name;
+  private int age;
+  private Gender gender;
   private Location location;
   private Inventory inventory;
   private boolean isTraitor = false;

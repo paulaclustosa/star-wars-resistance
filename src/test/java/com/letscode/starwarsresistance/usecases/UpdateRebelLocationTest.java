@@ -20,7 +20,8 @@ class UpdateRebelLocationTest {
 
     @Mock LocationValidator locationValidator;
     @Mock RebelValidator rebelValidator;
-    @Mock RebelPersistenceGateway rebelPersistenceGateway;
+    @Mock
+    RebelPersistenceGateway rebelPersistenceGateway;
     @InjectMocks UpdateRebelLocation updateRebelLocation;
 
     @Test

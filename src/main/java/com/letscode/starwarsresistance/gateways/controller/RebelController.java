@@ -27,6 +27,7 @@ public class RebelController {
     Rebel rebel = rebelMapper.toRebel(rebelRequest);
     log.info("Creating rebel: {}", rebel);
     Rebel rebelSaved = createRebel.execute(rebel);
+    log.info("Creating rebel: {}", rebelSaved);
     return rebelSaved;
   }
 

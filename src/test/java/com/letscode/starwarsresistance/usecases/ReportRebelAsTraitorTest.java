@@ -17,7 +17,8 @@ import java.util.List;
 class ReportRebelAsTraitorTest {
 
     @Mock RebelValidator rebelValidator;
-    @Mock RebelPersistenceGateway rebelPersistenceGateway;
+    @Mock
+    RebelPersistenceGateway rebelPersistenceGateway;
     @InjectMocks ReportRebelAsTraitor reportRebelAsTraitor;
 
     @Test
