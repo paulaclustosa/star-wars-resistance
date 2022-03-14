@@ -39,7 +39,7 @@ public class RebelController {
           consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.OK)
-  public Rebel updateRebelLocation(@PathVariable("id") Long id, @RequestBody RebelRequest rebelRequest, @RequestBody LocationRequest locationRequest) {
+  public RebelResponse updateRebelLocation(@PathVariable("id") Long id, @RequestBody RebelRequest rebelRequest, @RequestBody LocationRequest locationRequest) {
     log.info("Updating location: {}", locationRequest);
     Location location = locationMapper.toLocation(locationRequest);
     log.info("Updating rebel: {}", rebelRequest);
@@ -47,6 +47,6 @@ public class RebelController {
     rebel.setId(id);
     log.info("Updating rebel: {}", rebel);
     Rebel rebelSaved = updateRebelLocation.execute(rebel, location);
-    return rebelSaved;
+    return new RebelResponse(rebelSaved);
   }
 }
