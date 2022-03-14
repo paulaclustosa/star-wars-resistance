@@ -11,9 +11,6 @@ import java.util.List;
 @Component
 public class RebelValidator {
 
-  LocationValidator locationValidator;
-  InventoryValidator inventoryValidator;
-
   public List<String> validate(Rebel rebel) {
     List<String> errors = new ArrayList<>();
 
@@ -21,12 +18,13 @@ public class RebelValidator {
     if (rebel.getId() != null) errors.add("Rebel already registered.");
     if (!StringUtils.hasText(rebel.getName())) errors.add("Rebel's name is mandatory.");
     if (!StringUtils.hasText(Integer.toString(rebel.getAge()))) errors.add("Rebel's age is mandatory.");
-    if (rebel.getGender() != Gender.FEMALE || rebel.getGender() != Gender.MALE) errors.add("Invalid gender entry.");
 
-    List<String> locationErrors = locationValidator.validate(rebel.getLocation());
+    if (rebel.getGender() != Gender.FEMALE && rebel.getGender() != Gender.MALE) errors.add("Invalid gender entry.");
+
+    List<String> locationErrors = LocationValidator.validate(rebel.getLocation());
     if (!locationErrors.isEmpty()) errors.addAll(locationErrors);
 
-    List<String> inventoryErrors = inventoryValidator.validate(rebel.getInventory());
+    List<String> inventoryErrors = InventoryValidator.validate(rebel.getInventory());
     if (!inventoryErrors.isEmpty()) errors.addAll(inventoryErrors);
 
     return errors;
