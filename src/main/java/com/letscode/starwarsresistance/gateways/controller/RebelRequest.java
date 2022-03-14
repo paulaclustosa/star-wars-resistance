@@ -30,7 +30,6 @@ public class RebelRequest {
       required = true,
       value = "Rebel's gender.",
       dataType = "String",
-      allowableValues = "F, M",
       example = "F" )
   private String gender;
 

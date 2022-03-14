@@ -14,7 +14,7 @@ public class InventoryValidator {
 
   private static final String INVENTORY_MANDATORY_MSG = "Rebel's inventory is mandatory. ";
 
-  public List<String> validate(Inventory inventory) {
+  public static List<String> validate(Inventory inventory) {
     List<String> errors = new ArrayList<>();
 
     if (!StringUtils.hasText(Integer.toString(inventory.getItems().get(Item.WEAPON)))) errors.add(INVENTORY_MANDATORY_MSG +
