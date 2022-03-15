@@ -1,8 +1,6 @@
 package com.letscode.starwarsresistance.usecases.validators;
 
 import com.letscode.starwarsresistance.domains.entities.Inventory;
-import com.letscode.starwarsresistance.domains.entities.Rebel;
-import com.letscode.starwarsresistance.domains.enums.Item;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -14,7 +12,7 @@ public class InventoryValidator {
 
   private static final String INVENTORY_MANDATORY_MSG = "Rebel's inventory is mandatory. ";
 
-  public static List<String> validate(Inventory inventory) {
+  public List<String> validate(Inventory inventory) {
     List<String> errors = new ArrayList<>();
 
     if (!StringUtils.hasText(Integer.toString(inventory.getWeaponAmount()))) errors.add(INVENTORY_MANDATORY_MSG +
