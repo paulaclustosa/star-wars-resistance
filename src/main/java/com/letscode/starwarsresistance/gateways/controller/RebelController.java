@@ -3,6 +3,7 @@ package com.letscode.starwarsresistance.gateways.controller;
 import com.letscode.starwarsresistance.domains.entities.Location;
 import com.letscode.starwarsresistance.domains.entities.Rebel;
 import com.letscode.starwarsresistance.usecases.CreateRebel;
+import com.letscode.starwarsresistance.usecases.ReportRebelAsTraitor;
 import com.letscode.starwarsresistance.usecases.UpdateRebelLocation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ public class RebelController {
   private final CreateRebel createRebel;
   private final LocationMapper locationMapper;
   private final UpdateRebelLocation updateRebelLocation;
+  private final ReportRebelAsTraitor reportRebelAsTraitor;
 
   @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -47,6 +49,19 @@ public class RebelController {
     rebel.setId(id);
     log.info("Updating rebel: {}", rebel);
     Rebel rebelSaved = updateRebelLocation.execute(rebel, location);
+    return new RebelResponse(rebelSaved);
+  }
+
+  @PutMapping(path = "report-traitor/{id}",
+          consumes = MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.OK)
+  public RebelResponse reportRebelAsTraitor(@PathVariable("id") Long id, @RequestBody RebelRequest rebelRequest) {
+    log.info("Reporting as traitor: {}", rebelRequest);
+    Rebel rebel = rebelMapper.toRebel(rebelRequest);
+    rebel.setId(id);
+    log.info("Reporting as traitor: {}", rebel);
+    Rebel rebelSaved = reportRebelAsTraitor.execute(rebel);
     return new RebelResponse(rebelSaved);
   }
 }
