@@ -3,7 +3,7 @@ package com.letscode.starwarsresistance.usecases;
 import com.letscode.starwarsresistance.domains.entities.Rebel;
 import com.letscode.starwarsresistance.exceptions.BusinessValidationException;
 import com.letscode.starwarsresistance.gateways.persistence.RebelPersistenceGateway;
-import com.letscode.starwarsresistance.usecases.validators.RebelValidator;
+import com.letscode.starwarsresistance.usecases.validators.UpdateRebelValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +16,8 @@ import java.util.List;
 @MockitoSettings
 class ReportRebelAsTraitorTest {
 
-    @Mock RebelValidator rebelValidator;
+    @Mock
+    UpdateRebelValidator updateRebelValidator;
     @Mock
     RebelPersistenceGateway rebelPersistenceGateway;
     @InjectMocks ReportRebelAsTraitor reportRebelAsTraitor;
@@ -25,7 +26,7 @@ class ReportRebelAsTraitorTest {
     void shouldNotUpdateWhenValidationFails(){
         Rebel rebel = Rebel.builder().build();
 
-        Mockito.when(rebelValidator.validate(rebel)).thenReturn(List.of("rebel validation error"));
+        Mockito.when(updateRebelValidator.validate(rebel)).thenReturn(List.of("rebel validation error"));
 
         Assertions.assertThrows(BusinessValidationException.class, () -> reportRebelAsTraitor.execute(rebel));
     }
@@ -35,7 +36,7 @@ class ReportRebelAsTraitorTest {
         Rebel rebel = Rebel.builder().build();
         final int reportsBefore = rebel.getNumberOfReportsAsTraitor();
 
-        Mockito.when(rebelValidator.validate(rebel)).thenReturn(List.of());
+        Mockito.when(updateRebelValidator.validate(rebel)).thenReturn(List.of());
 
         rebel.setNumberOfReportsAsTraitor(0);
 

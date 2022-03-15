@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
-
 @RestController
 @RequestMapping(value = "/rebels")
 @RequiredArgsConstructor
@@ -41,7 +39,7 @@ public class RebelController {
           consumes = MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.OK)
-  public RebelResponse updateRebelLocation(@PathVariable("id") Long id, @RequestBody RebelRequest rebelRequest, @RequestBody LocationRequest locationRequest) {
+  public RebelResponse updateRebelLocation(@PathVariable("id") Long id, @RequestBody RebelRequest rebelRequest, LocationRequest locationRequest) {
     log.info("Updating location: {}", locationRequest);
     Location location = locationMapper.toLocation(locationRequest);
     log.info("Updating rebel: {}", rebelRequest);
