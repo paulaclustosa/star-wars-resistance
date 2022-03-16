@@ -44,16 +44,18 @@ public class TradeItem {
 
         if (rebel1.getInventory().getPoints() != rebel2.getInventory().getPoints()) throw new BusinessValidationException(List.of("Items cannot be traded because their values are not equal"));
 
-        rebel1.getInventory().setAmmunitionAmount(rebel2Items.getAmmunitionAmount());
-        rebel1.getInventory().setWeaponAmount(rebel2Items.getWeaponAmount());
-        rebel1.getInventory().setWaterAmount(rebel2Items.getWaterAmount());
-        rebel1.getInventory().setFoodAmount(rebel2Items.getFoodAmount());
+        Rebel rebel1Updated = trade(rebel1, rebel1Items, rebel2Items);
+        Rebel rebel2Updated = trade(rebel2, rebel2Items, rebel1Items);
 
-        rebel2.getInventory().setAmmunitionAmount(rebel1Items.getAmmunitionAmount());
-        rebel2.getInventory().setWeaponAmount(rebel1Items.getWeaponAmount());
-        rebel2.getInventory().setWaterAmount(rebel1Items.getWaterAmount());
-        rebel2.getInventory().setFoodAmount(rebel1Items.getFoodAmount());
+        return List.of(rebelPersistenceGateway.save(rebel1Updated), rebelPersistenceGateway.save(rebel2Updated));
+    }
 
-        return List.of(rebelPersistenceGateway.save(rebel1), rebelPersistenceGateway.save(rebel2));
+    private Rebel trade(Rebel rebel, Inventory itemsToRemove, Inventory itemsToInclude) {
+        rebel.getInventory().setAmmunitionAmount(rebel.getInventory().getAmmunitionAmount() - itemsToRemove.getAmmunitionAmount() + itemsToInclude.getAmmunitionAmount());
+        rebel.getInventory().setWeaponAmount(rebel.getInventory().getWeaponAmount() - itemsToRemove.getWeaponAmount() + itemsToInclude.getWeaponAmount());
+        rebel.getInventory().setWaterAmount(rebel.getInventory().getWaterAmount() - itemsToRemove.getWaterAmount() + itemsToInclude.getWaterAmount());
+        rebel.getInventory().setFoodAmount(rebel.getInventory().getFoodAmount() - itemsToRemove.getFoodAmount() + itemsToInclude.getFoodAmount());
+
+        return rebel;
     }
 }
