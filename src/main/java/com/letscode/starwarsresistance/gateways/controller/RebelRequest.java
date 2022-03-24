@@ -79,7 +79,7 @@ public class RebelRequest {
       value = "Amount of water in its inventory.",
       dataType = "int",
       example = "5")
-  int waterAmount;
+  private int waterAmount;
 
   @NotBlank
   @ApiModelProperty(
@@ -87,6 +87,6 @@ public class RebelRequest {
       value = "Amount of food in its inventory.",
       dataType = "int",
       example = "0")
-  int foodAmount;
+  private int foodAmount;
 
 }

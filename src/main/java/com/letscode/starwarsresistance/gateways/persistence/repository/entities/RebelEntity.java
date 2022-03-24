@@ -7,7 +7,6 @@ import com.letscode.starwarsresistance.domains.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 
@@ -41,6 +40,7 @@ public class RebelEntity {
   private int numberOfReportsAsTraitor = 0;
 
   public RebelEntity(Rebel rebel) {
+    this.id = rebel.getId();
     this.name = rebel.getName();
     this.age = rebel.getAge();
     this.gender = rebel.getGender().getGenderRef();
